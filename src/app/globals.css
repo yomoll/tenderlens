@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #ffffff;
+  --ink: #0b0c0c;
+  --muted: #505a5f;
+  --line: #b1b4b6;
+  --surface: #ffffff;
+  --brand: #1d70b8;
+  --brand-hover: #003078;
+  --accent: #1d70b8;
+  --accent-hover: #003078;
+  --accent-soft: #d2e2f1;
+  --on-accent: #ffffff;
+  --cta: #00703c;
+  --cta-hover: #005a30;
+  --on-cta: #ffffff;
+  --warn-bg: #f3f2f1;
+  --warn-ink: #0b0c0c;
+  --focus: #ffdd00;
+  --header: #1d70b8;
+  --header-ink: #ffffff;
+  --shadow: 0 1px 0 rgb(11 12 12 / 0.08);
+}
+
+html.dark {
+  --paper: #0b0c0c;
+  --ink: #ffffff;
+  --muted: #b1b4b6;
+  --line: #505a5f;
+  --surface: #1d1d1d;
+  --brand: #1d70b8;
+  --brand-hover: #5694d1;
+  --accent: #5694d1;
+  --accent-hover: #7aaee0;
+  --accent-soft: #1c3a57;
+  --on-accent: #ffffff;
+  --cta: #00823b;
+  --cta-hover: #00703c;
+  --on-cta: #ffffff;
+  --warn-bg: #2a2a2a;
+  --warn-ink: #ffffff;
+  --focus: #ffdd00;
+  --header: #1d70b8;
+  --header-ink: #ffffff;
+  --shadow: none;
+}
+
+@theme inline {
+  --font-sans: var(--font-source-sans), "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-surface: var(--surface);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-cta: var(--cta);
+  --color-cta-hover: var(--cta-hover);
+  --color-on-cta: var(--on-cta);
+  --color-warn-bg: var(--warn-bg);
+  --color-warn-ink: var(--warn-ink);
+  --color-header: var(--header);
+  --color-header-ink: var(--header-ink);
+}
+
+html {
+  color-scheme: light;
+  background: var(--paper);
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.1875rem;
+  line-height: 1.45;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 0;
+  box-shadow: 0 0 0 6px #0b0c0c;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -3rem;
+  z-index: 80;
+  background: var(--focus);
+  color: #0b0c0c;
+  padding: 0.5rem 0.9rem;
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: none;
+  box-shadow: none;
+}
+
+::selection {
+  background: var(--focus);
+  color: #0b0c0c;
+}
+
+.prose-answer p + p {
+  margin-top: 0.9rem;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
