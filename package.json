@@ -1,16 +1,17 @@
 {
-  "name": "govguide-ai",
-  "version": "0.1.0",
+  "name": "tenderlens",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack --port 3000",
     "build": "next build",
     "start": "next start --port 3000",
     "lint": "eslint",
-    "test": "tsx --test src/lib/rag/interpret.test.ts src/lib/rag/retrieve.test.ts src/lib/govuk/text.test.ts"
+    "test": "tsx --test src/lib/format/currency.test.ts src/lib/format/deadline.test.ts src/lib/search/validate.test.ts src/lib/ai/schema.test.ts src/lib/procurement/normalize.test.ts src/lib/storage/saved.test.ts src/lib/procurement/ids.test.ts"
   },
   "dependencies": {
-    "@phosphor-icons/react": "^2.1.10",
+    "geist": "^1.5.1",
+    "lucide-react": "^0.544.0",
     "next": "^15.5.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"

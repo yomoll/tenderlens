@@ -10,17 +10,18 @@ export default function Icon() {
         style={{
           width: "100%",
           height: "100%",
-          background: "#1d70b8",
+          background: "#143A66",
           color: "white",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontSize: 34,
+          fontSize: 30,
           fontWeight: 700,
           letterSpacing: -1,
+          borderRadius: 12,
         }}
       >
-        G
+        TL
       </div>
     ),
     size,

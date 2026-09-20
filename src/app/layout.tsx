@@ -1,45 +1,56 @@
 import type { Metadata } from "next";
-import { Source_Sans_3 } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import "./globals.css";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
-import { DisclaimerBanner } from "@/components/DisclaimerBanner";
-
-const sourceSans = Source_Sans_3({
-  subsets: ["latin", "latin-ext"],
-  display: "swap",
-  weight: ["400", "600", "700"],
-  variable: "--font-source-sans",
-});
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { getMetadataBase, INDEPENDENCE_DISCLAIMER } from "@/lib/site";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://govguide.civicailabs.co.uk"),
+  metadataBase: getMetadataBase(),
   title: {
-    default: "GovGuide AI",
-    template: "%s | GovGuide AI",
+    default: "TenderLens | Understand UK Public Sector Tenders",
+    template: "%s | TenderLens",
   },
-  description: "Ask government information in normal English. Independent tool. Not affiliated with GOV.UK.",
-  robots: { index: false, follow: false },
+  description:
+    "Search UK public-sector contracts and turn complex procurement notices into clear, actionable information for SMEs, charities and growing organisations.",
+  applicationName: "TenderLens",
+  authors: [{ name: "CivicAI Labs" }],
+  openGraph: {
+    type: "website",
+    locale: "en_GB",
+    siteName: "TenderLens",
+    title: "TenderLens | Understand UK Public Sector Tenders",
+    description:
+      "Search UK public-sector contracts and turn complex procurement notices into clear, actionable information for SMEs, charities and growing organisations.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TenderLens | Understand UK Public Sector Tenders",
+    description:
+      "Search UK public-sector contracts and turn complex procurement notices into clear, actionable information.",
+  },
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={sourceSans.variable} suppressHydrationWarning>
+    <html lang="en-GB" className={GeistSans.variable} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{if(localStorage.getItem("govguide.theme")==="dark"){document.documentElement.classList.add("dark");}}catch(e){}})();`,
+            __html: `(function(){try{if(localStorage.getItem("tenderlens.theme")==="dark"){document.documentElement.classList.add("dark");}else if(localStorage.getItem("tenderlens.theme")==="light"){document.documentElement.classList.remove("dark");}else if(window.matchMedia("(prefers-color-scheme: dark)").matches){document.documentElement.classList.add("dark");}}catch(e){}})();`,
           }}
         />
       </head>
-      <body className="flex min-h-[100dvh] flex-col bg-paper font-sans text-ink antialiased">
+      <body className={`${GeistSans.className} flex min-h-[100dvh] flex-col bg-paper text-ink antialiased`}>
         <a className="skip-link" href="#main">
           Skip to main content
         </a>
-        <SiteHeader />
-        <DisclaimerBanner />
+        <Header />
         <div className="flex-1">{children}</div>
-        <SiteFooter />
+        <p className="sr-only">{INDEPENDENCE_DISCLAIMER}</p>
+        <Footer />
       </body>
     </html>
   );

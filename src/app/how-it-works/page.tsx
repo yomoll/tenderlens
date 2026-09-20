@@ -1,63 +1,67 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CONTRACTS_FINDER_URL, FIND_A_TENDER_URL, INDEPENDENCE_DISCLAIMER } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "How it works",
+  description: "How TenderLens searches official UK procurement notices and explains them without replacing the original documents.",
 };
-
-const steps = [
-  {
-    title: "You ask in everyday language",
-    body: "Type a question the way you would say it. The app does not need official form names or GOV.UK page titles.",
-  },
-  {
-    title: "The question is interpreted",
-    body: "GovGuide turns the question into a short intent and a set of GOV.UK search queries. Known topics, such as self-employment, also load the most relevant official paths directly.",
-  },
-  {
-    title: "Official pages are retrieved",
-    body: "Search uses the public GOV.UK Search API. Full page text and metadata come from the GOV.UK Content API, so the site is not scraped.",
-  },
-  {
-    title: "A cited summary is written",
-    body: "The answer is a plain-English summary, a “what you may need to do” checklist, and the official links underneath. If an AI model is configured, it may only use the retrieved pages. Otherwise the summary is extracted from those pages.",
-  },
-];
 
 export default function HowItWorksPage() {
   return (
-    <main id="main" className="mx-auto max-w-5xl px-4 py-10">
-      <h1 className="text-4xl font-bold tracking-tight">How it works</h1>
-      <p className="mt-3 max-w-[62ch] text-lg text-muted">
-        This is a retrieval-augmented explainer: search first, then summarise, then cite. It is built so you can see every source.
+    <main id="main" className="mx-auto max-w-3xl px-4 py-12 prose-page">
+      <h1 className="text-4xl font-semibold tracking-tight">How TenderLens works</h1>
+      <p className="mt-4 text-lg text-muted">
+        TenderLens helps smaller organisations find UK public contracts and understand the published notice. It does not replace
+        the official documents.
       </p>
-
-      <ol className="mt-10 space-y-0">
-        {steps.map((step, index) => (
-          <li
-            key={step.title}
-            className={`grid gap-4 border-line py-8 md:grid-cols-[7rem_minmax(0,1fr)] ${index === 0 ? "border-t" : ""} border-b`}
-          >
-            <p className="font-semibold text-accent">{String(index + 1).padStart(2, "0")}</p>
-            <div>
-              <h2 className="text-2xl font-bold tracking-tight">{step.title}</h2>
-              <p className="mt-2 max-w-[62ch] text-muted">{step.body}</p>
-            </div>
-          </li>
-        ))}
+      <ol className="mt-10 space-y-8">
+        <li>
+          <h2 className="text-2xl font-semibold">Search</h2>
+          <p className="mt-2 text-muted">
+            TenderLens searches official public procurement information from{" "}
+            <a href={CONTRACTS_FINDER_URL} className="font-semibold text-accent">
+              Contracts Finder
+            </a>{" "}
+            and{" "}
+            <a href={FIND_A_TENDER_URL} className="font-semibold text-accent">
+              Find a Tender
+            </a>
+            . Find a Tender is the UK Central Digital Platform for notices published from 24 February 2025.
+          </p>
+        </li>
+        <li>
+          <h2 className="text-2xl font-semibold">Understand</h2>
+          <p className="mt-2 text-muted">
+            TenderLens turns procurement language into easier-to-read explanations. If an AI provider is configured, it can only
+            use the official fields supplied to it. If not, TenderLens still builds a structured summary from those same fields.
+          </p>
+        </li>
+        <li>
+          <h2 className="text-2xl font-semibold">Verify and act</h2>
+          <p className="mt-2 text-muted">
+            Users follow the original government notice before making decisions. Every opportunity links back to its official
+            source.
+          </p>
+        </li>
       </ol>
-
-      <section className="mt-12 border border-line bg-surface p-6">
-        <h2 className="text-2xl font-bold">What this is not</h2>
-        <p className="mt-3 max-w-[62ch] text-muted">
-          It is not legal advice, tax advice, or a government service. It cannot log in to HMRC, submit forms, or decide your eligibility. Use the GOV.UK links to act.
-        </p>
-        <p className="mt-6">
-          <Link href="/" className="font-bold text-accent underline underline-offset-4 hover:text-accent-hover">
-            Ask a question
-          </Link>
-        </p>
+      <section className="mt-12">
+        <h2 className="text-2xl font-semibold">What TenderLens does not do</h2>
+        <ul className="mt-3 list-disc space-y-2 pl-5 text-muted">
+          <li>issue tenders</li>
+          <li>accept tender submissions</li>
+          <li>guarantee eligibility</li>
+          <li>guarantee contract awards</li>
+          <li>provide legal advice</li>
+          <li>represent the UK Government</li>
+        </ul>
       </section>
+      <p className="mt-10 text-sm text-muted">{INDEPENDENCE_DISCLAIMER}</p>
+      <p className="mt-6">
+        <Link href="/search" className="font-semibold text-accent">
+          Find opportunities
+        </Link>
+      </p>
     </main>
   );
 }
