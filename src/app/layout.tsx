@@ -13,7 +13,7 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://govguide.civicailabs.co.uk"),
   title: {
     default: "GovGuide AI",
     template: "%s | GovGuide AI",

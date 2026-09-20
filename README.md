@@ -26,6 +26,20 @@ question
 
 The model may only use retrieved page text. Every checklist item cites a source id such as `S1`.
 
+## Live site
+
+[https://govguide.civicailabs.co.uk](https://govguide.civicailabs.co.uk)
+
+Set `NEXT_PUBLIC_SITE_URL=https://govguide.civicailabs.co.uk` in the host environment, plus `OPENAI_API_KEY` if you want generative summaries.
+
+DNS for the subdomain (123 Reg / Fasthosts LiveDNS):
+
+| Type | Name | Value |
+|---|---|---|
+| CNAME | `govguide` | `cname.vercel-dns.com` |
+
+Then attach `govguide.civicailabs.co.uk` as a custom domain on the Vercel project for [yomoll/govguide-ai](https://github.com/yomoll/govguide-ai).
+
 ## Run locally
 
 ```bash
